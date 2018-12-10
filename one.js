@@ -51,23 +51,22 @@ function myAa(arr, data){
             yyPath += onePath + '/';
             myPath = path.resolve(yyPath);
         }
-        fs.existsSync(myPath) == false && mkdirs(myPath);
+        fs.existsSync(myPath) == false && mkdirs(myPath,JSON.stringify(arr));
     })
 }
 //递归新建文件夹
-function mkdirs(dirpath) {
+function mkdirs(dirpath, myJson) {
+    var file = path.join(path.dirname(dirpath), '/index.json')
     if (!fs.existsSync(path.dirname(dirpath))) {
         mkdirs(path.dirname(dirpath));
     }
     fs.mkdirSync(dirpath);
-    // var file = path.join(path.dirname(dirpath), '/index.json')
-    // fs.writeFile(file, JSON.parse(myJson), function(err) {
-    //     if (err) {
-    //         return console.log(err);
-    //     }
-    //     console.log('文件创建成功，地址：' + file);
-    // })
-
+    fs.writeFile(file, myJson, function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log('文件创建成功，地址：' + file);
+    })
 }
 //  let myPath = path.resolve('path1/path2/path3');
 //  fs.existsSync(myPath) == false && mkdirs(myPath);
