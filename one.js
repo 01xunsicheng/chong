@@ -15,18 +15,41 @@ fs.readFile('my.json',function(err,data) {
     }
     var city = data.toString();//将二进制的数据转换为字符串
     city = JSON.parse(city)
-     myAa(city.data)
+     myAa(city.data,'10000001/','0')
 })
 
-function myAa(arr){
-    let yyPath = '10000001/'
+// let mmm = ''
+// function myAa(arr, pId, m){
+//     mmm += pId
+//     arr.forEach(function (e, index) {
+//         let onePath = e.parentId;
+//         let mm = e.id+'';
+//         yyPath = mmm + mm ;
+//         let myPath = path.resolve(yyPath);
+//         fs.existsSync(myPath) == false && mkdirs(myPath ,JSON.stringify(arr));
+//
+//         // if(e.children && e.children.code == '200'){
+//         //     myAa(e.children.data, e.children.data[0].parentId+'/',index + '',)
+//         // }
+//
+//     })
+// }
+function myAa(arr, data){
     arr.forEach(function (e, index) {
-       // let onePath = e.parentId+'';
+        if (!data) {
+            var yyPath = '10000001/'
+        } else {
+            var yyPath = data
+        }
+        let myPath = null
         let onePath = e.id+'';
-        yyPath += onePath + '/';
-        let myPath = path.resolve(yyPath);
         if(e.children && e.children.code == '200'){
-            myAa(e.children.data)
+            yyPath += onePath + '/';
+            myPath = path.resolve(yyPath);
+            myAa(e.children.data, yyPath)
+        } else {
+            yyPath += onePath + '/';
+            myPath = path.resolve(yyPath);
         }
         fs.existsSync(myPath) == false && mkdirs(myPath);
     })
@@ -37,6 +60,14 @@ function mkdirs(dirpath) {
         mkdirs(path.dirname(dirpath));
     }
     fs.mkdirSync(dirpath);
+    // var file = path.join(path.dirname(dirpath), '/index.json')
+    // fs.writeFile(file, JSON.parse(myJson), function(err) {
+    //     if (err) {
+    //         return console.log(err);
+    //     }
+    //     console.log('文件创建成功，地址：' + file);
+    // })
+
 }
 //  let myPath = path.resolve('path1/path2/path3');
 //  fs.existsSync(myPath) == false && mkdirs(myPath);
