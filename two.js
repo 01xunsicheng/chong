@@ -15,7 +15,7 @@ fs.readFile('my.json', function (err, data) {
     }
     var city = data.toString();//将二进制的数据转换为字符串
     city = JSON.parse(city)
-  //  myAa(city.data, '10000001/')
+    //  myAa(city.data, '10000001/')
 })
 function myAa(arr, parentPath) {
     arr.forEach(function (e, index) {
@@ -54,27 +54,27 @@ function file(dirname, myJson) {
 //  fs.existsSync(myPath) == false && mkdirs(myPath);
 
 //console.log(aa)
-superagent
-    .post(loginPageUrl)
-    .send({
-        captchaCode: "",
-        error: "",
-        isFetching: false,
-        login: "18551547098",
-        loginType: "account",
-        part_key: "",
-        password: "52885288abcd",
-        rohrToken:"eJx9km1v2jAUhf+LpfJlEdiJTRIkNEGAFjTawVK6rUJTCE4wBTtKHCit+t93HV7Eh26SlTw+9+Rcv+Qd5cMlar2jZBOlqEUwxtT5sNCO56iFSB3Xm8hCuoASo5QRxyU+ocRC8bVmE9r0LbTIZz3UegbRamJ/boQpzJ+J7WHLw3huHREy5pZNYRjPECxopXVWtBoNnkVFkalc17dc6DKS9VhtG1Ecq1LqRimFFju+UamQXwue70TM25kSHEy1WEktZMnbVdaN07mxBzB4fSkimQmZmigQwG/k4wSeWyUBCq5jpV4Ery3SP4Uqc0gmtapT8K/gqyXC/LTIY5ZWL1zWEugiE5G2F0WhRHKoFdGWq1xAaJvAuSLY/zY0+6cOsYjngvY52f8l5xNiF3LPRC959KIxCmTumDZNlRmCKyKeY8g3PgzEiGcR1/gYXBxxjY85TSDbEIW+zcpnujGv8oHGTA+GjVb18Pwzuc6ZmH3yVfs9EsEncnzoy3xDnlsRHNmLOTJ4R9dHZ3Ufw/Dh3tT1uT6Gfxg+LUQqgfhoP3td9x/SoDPuLgN33Ov9cH6Fo/Q1DWbTfLWhkwO/04SPN2845H732y7oDvX6fqrfhl9Gk9Ftf5hnAcGks2rsvmdBlhVPyeOTr3L77nbzez0pB+G+/9Pfj5LBoeOgj7/v0Oek",
-        success: "",
-        verifyRequestCode: "",
-        verifyResponseCode: "",
-        verifyType: null
-       })
-    .set('Accept','application/json')
-    .end(function(res){
-        console.log('111111')
-        console.log(res)
-})
+// superagent
+//     .post(loginPageUrl)
+//     .send({
+//         captchaCode: "",
+//         error: "",
+//         isFetching: false,
+//         login: "18551547098",
+//         loginType: "account",
+//         part_key: "",
+//         password: "52885288abcd",
+//         rohrToken:"eJx9km1v2jAUhf+LpfJlEdiJTRIkNEGAFjTawVK6rUJTCE4wBTtKHCit+t93HV7Eh26SlTw+9+Rcv+Qd5cMlar2jZBOlqEUwxtT5sNCO56iFSB3Xm8hCuoASo5QRxyU+ocRC8bVmE9r0LbTIZz3UegbRamJ/boQpzJ+J7WHLw3huHREy5pZNYRjPECxopXVWtBoNnkVFkalc17dc6DKS9VhtG1Ecq1LqRimFFju+UamQXwue70TM25kSHEy1WEktZMnbVdaN07mxBzB4fSkimQmZmigQwG/k4wSeWyUBCq5jpV4Ery3SP4Uqc0gmtapT8K/gqyXC/LTIY5ZWL1zWEugiE5G2F0WhRHKoFdGWq1xAaJvAuSLY/zY0+6cOsYjngvY52f8l5xNiF3LPRC959KIxCmTumDZNlRmCKyKeY8g3PgzEiGcR1/gYXBxxjY85TSDbEIW+zcpnujGv8oHGTA+GjVb18Pwzuc6ZmH3yVfs9EsEncnzoy3xDnlsRHNmLOTJ4R9dHZ3Ufw/Dh3tT1uT6Gfxg+LUQqgfhoP3td9x/SoDPuLgN33Ov9cH6Fo/Q1DWbTfLWhkwO/04SPN2845H732y7oDvX6fqrfhl9Gk9Ftf5hnAcGks2rsvmdBlhVPyeOTr3L77nbzez0pB+G+/9Pfj5LBoeOgj7/v0Oek",
+//         success: "",
+//         verifyRequestCode: "",
+//         verifyResponseCode: "",
+//         verifyType: null
+//        })
+//     .set('Accept','application/json')
+//     .end(function(res){
+//         console.log('111111')
+//         console.log(res)
+// })
 //获取GET请求内容
 // http.createServer(function(req, res){
 //     res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
@@ -96,5 +96,4 @@ superagent
 //  })
 
 // })
-
 
