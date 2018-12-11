@@ -3,11 +3,11 @@ const path = require('path');
 var http = require('http');
 var url = require('url');
 var util = require('util');
-//var superagent = require('superagent');
+var superagent = require('superagent');
 //var express = require('express');
 // var router = express.Router();
 var baseUrl = 'https://e.dianping.com/poi/ecom/ajax/getCities?parentId=';
-var loginPageUrl = 'https://epassport.meituan.com/api/account/login?service=poiecom&bg_source=1&loginContinue=https:%2F%2Fe.dianping.com%2Fpoi%2Fecom%2Fcommon%2Fsetcookie&loginType=account';
+var loginPageUrl = 'https://epassport.meituan.com/api/account/login';
 var pageUrls = []   //接口的集合
 fs.readFile('my.json', function (err, data) {
     if (err) {
@@ -15,7 +15,7 @@ fs.readFile('my.json', function (err, data) {
     }
     var city = data.toString();//将二进制的数据转换为字符串
     city = JSON.parse(city)
-    myAa(city.data, '10000001/')
+  //  myAa(city.data, '10000001/')
 })
 function myAa(arr, parentPath) {
     arr.forEach(function (e, index) {
@@ -56,19 +56,20 @@ function file(dirname, myJson) {
 //console.log(aa)
 // superagent
 //     .post(loginPageUrl)
-//     .send({captchaCode: "",
-//         captchaToken: "",
-//         error: "账号或密码错误",
+//     .send({
+//         captchaCode: "",
+//         error: "",
 //         isFetching: false,
-//         login: "19991893781",
+//         login: "18551547098",
 //         loginType: "account",
 //         part_key: "",
 //         password: "52885288abcd",
-//         rohrToken: "eJy1k21P2zAQx7+LJfpmVuunxEmlamrDU6u1QBfKNoamENxgaOMocQoFIe277YvtnEJhEpP2ZlIU/e5897/zXfKIyuEV6j6i+SLJUJcSQgR/wmilStRFtE3aPsLIVnDkCSGY5wec+hKj9I1PEhJ4HKPLcraLuueCEMwDcuEcU7DPKQsIDgh4NihpeIGZgMfFDCEEXVtbVN1ORxVJVRWmtO2l0rZO8nZqlp0kTU2d206da6tXamEynX+sVLnSqeoVRisIaqUmtzqvVa/R2uH9HbYPj2pf6SQvdJ45KXBAvHNvDHgvTQ5QKZsac6tV6zL7UZm6BGXaaipFfxN+0yLYz01utKy5VXlrDlXyuc56l1Vl9HzdqpKlMqUG0R6Fuf7brf/rdRGsYBm7FTBKYSMc2mKUbcltiTliHmZcOuKOGp8PGdR9ICyQmBHiKJSYhgKIe0Cei+Mhw5S4XC48TFlDNMRUbDIExDXVJMfUb/Q8iJNNNUEwDRpikBF6DflA8rkrGgYNiT9IvkP+OyS2RF8o2KoE7IXkVkUKN7LbZmS/fuLh5Pg0hrPvNSGUbM3Zls6fCZKSt3PGg9M4Ppq8tv7qoD7MS9DXROsSncAYfkoIqHSWA6nR3ez+Zu8oi/rjwVUkx7u7n/nXeJTdZ9FsWl4vxMlaHVqqxosHEqtw8GkVDYb2ZjK1D8MPo5PRwd6wLCJKaP+6szouoqKozuanZ6Ep2eHB4tvNSb0f3+19Ce9G8/11n6On3xBCKlw=",
+//         rohrToken:"eJx9km1v2jAUhf+LpfJlEdiJTRIkNEGAFjTawVK6rUJTCE4wBTtKHCit+t93HV7Eh26SlTw+9+Rcv+Qd5cMlar2jZBOlqEUwxtT5sNCO56iFSB3Xm8hCuoASo5QRxyU+ocRC8bVmE9r0LbTIZz3UegbRamJ/boQpzJ+J7WHLw3huHREy5pZNYRjPECxopXVWtBoNnkVFkalc17dc6DKS9VhtG1Ecq1LqRimFFju+UamQXwue70TM25kSHEy1WEktZMnbVdaN07mxBzB4fSkimQmZmigQwG/k4wSeWyUBCq5jpV4Ery3SP4Uqc0gmtapT8K/gqyXC/LTIY5ZWL1zWEugiE5G2F0WhRHKoFdGWq1xAaJvAuSLY/zY0+6cOsYjngvY52f8l5xNiF3LPRC959KIxCmTumDZNlRmCKyKeY8g3PgzEiGcR1/gYXBxxjY85TSDbEIW+zcpnujGv8oHGTA+GjVb18Pwzuc6ZmH3yVfs9EsEncnzoy3xDnlsRHNmLOTJ4R9dHZ3Ufw/Dh3tT1uT6Gfxg+LUQqgfhoP3td9x/SoDPuLgN33Ov9cH6Fo/Q1DWbTfLWhkwO/04SPN2845H732y7oDvX6fqrfhl9Gk9Ftf5hnAcGks2rsvmdBlhVPyeOTr3L77nbzez0pB+G+/9Pfj5LBoeOgj7/v0Oek",
 //         success: "",
 //         verifyRequestCode: "",
 //         verifyResponseCode: "",
-//         verifyType: null})
+//         verifyType: null
+//        })
 //     .set('Accept','application/json')
 //     .end(function(res){
 //         console.log('111111')
