@@ -9,65 +9,47 @@ var util = require('util');
 var baseUrl = 'https://e.dianping.com/poi/ecom/ajax/getCities?parentId=';
 var loginPageUrl = 'https://epassport.meituan.com/api/account/login?service=poiecom&bg_source=1&loginContinue=https:%2F%2Fe.dianping.com%2Fpoi%2Fecom%2Fcommon%2Fsetcookie&loginType=account';
 var pageUrls = []   //接口的集合
-fs.readFile('my.json',function(err,data) {
+fs.readFile('my.json', function (err, data) {
     if (err) {
         return console.error(err);
     }
     var city = data.toString();//将二进制的数据转换为字符串
     city = JSON.parse(city)
-     myAa(city.data,'10000001/','0')
+    myAa(city.data, '10000001/')
 })
-
-// let mmm = ''
-// function myAa(arr, pId, m){
-//     mmm += pId
-//     arr.forEach(function (e, index) {
-//         let onePath = e.parentId;
-//         let mm = e.id+'';
-//         yyPath = mmm + mm ;
-//         let myPath = path.resolve(yyPath);
-//         fs.existsSync(myPath) == false && mkdirs(myPath ,JSON.stringify(arr));
-//
-//         // if(e.children && e.children.code == '200'){
-//         //     myAa(e.children.data, e.children.data[0].parentId+'/',index + '',)
-//         // }
-//
-//     })
-// }
-function myAa(arr, data){
+function myAa(arr, parentPath) {
     arr.forEach(function (e, index) {
-        if (!data) {
-            var yyPath = '10000001/'
-        } else {
-            var yyPath = data
-        }
-        let myPath = null
-        let onePath = e.id+'';
-        if(e.children && e.children.code == '200'){
-            yyPath += onePath + '/';
-            myPath = path.resolve(yyPath);
+        var yyPath = parentPath
+        let onePath = e.id + '';
+        yyPath += onePath + '/';
+        let myPath = path.resolve(yyPath);
+        fs.existsSync(myPath) == false && mkdirs(myPath, myPath);
+        if (e.children && e.children.code == '200' && e.children.flag) {
             myAa(e.children.data, yyPath)
-        } else {
-            yyPath += onePath + '/';
-            myPath = path.resolve(yyPath);
         }
-        fs.existsSync(myPath) == false && mkdirs(myPath,JSON.stringify(arr));
     })
 }
 //递归新建文件夹
 function mkdirs(dirpath, myJson) {
-    var file = path.join(path.dirname(dirpath), '/index.json')
+    console.log(dirpath)
+    //判断他的文件夹是否存在
     if (!fs.existsSync(path.dirname(dirpath))) {
         mkdirs(path.dirname(dirpath));
     }
-    fs.mkdirSync(dirpath);
-    fs.writeFile(file, myJson, function(err) {
+    fs.mkdirSync(dirpath);  //同步地创建目录
+    file(dirpath + '', myJson)
+}
+
+function file(dirname, myJson) {
+    var file = path.join(dirname, '/index.json')
+    fs.writeFile(file, myJson, function (err) {
         if (err) {
             return console.log(err);
         }
         console.log('文件创建成功，地址：' + file);
     })
 }
+
 //  let myPath = path.resolve('path1/path2/path3');
 //  fs.existsSync(myPath) == false && mkdirs(myPath);
 
@@ -99,18 +81,18 @@ function mkdirs(dirpath, myJson) {
 // }).listen(3000);
 
 // router.post('/getCities',function(req, res, next){
- //   var pageLength = req.body.data.length;
-   // for( var _i = 1; _i <= 3 ; _i++){ //
-      //  pageUrls.push(baseUrl + req.body.data[i].id );
+//   var pageLength = req.body.data.length;
+// for( var _i = 1; _i <= 3 ; _i++){ //
+//  pageUrls.push(baseUrl + req.body.data[i].id );
 //pageUrls.push(baseUrl + '10000001' )
 // console.log(pageUrls);
-   // };
-   //  pageUrls.forEach(function (pageUrl) {
-   //      console.log(pageUrl)
-   //      superagent.get(pageUrl).end(function (err,pres) {
-   //          console.log(pres);
-   //      })
-   //  })
+// };
+//  pageUrls.forEach(function (pageUrl) {
+//      console.log(pageUrl)
+//      superagent.get(pageUrl).end(function (err,pres) {
+//          console.log(pres);
+//      })
+//  })
 
 // })
 
